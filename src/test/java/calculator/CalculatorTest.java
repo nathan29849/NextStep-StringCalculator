@@ -1,17 +1,22 @@
+package calculator;
 //import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
 
 class CalculatorTest {
+
+	private final static Logger LOG = LoggerFactory.getLogger(CalculatorTest.class);
 	private Calculator cal;
 
 	@BeforeEach
 	void init() {
 		cal = new Calculator();
-		System.out.println("Before");
+		LOG.info(() -> "Test init");
 	}
 
 	@Test
@@ -26,7 +31,7 @@ class CalculatorTest {
 
 	@AfterEach
 	void after() {
-		System.out.println("teardown");
+		LOG.info(() -> "after Test");
 	}
 
 }
