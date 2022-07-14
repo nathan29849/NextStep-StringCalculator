@@ -3,18 +3,27 @@ package calculator;
 public class StringCalculator {
 
 	public int add(String str) {
-		String splitedStr;
+		String firstSplitStr;
+		String finalSplitStr;
 
-		if (str.startsWith("//")) {
-			String splitedStrByCustom = getSplit(str, "\n");
-			splitedStr = getSplit(splitedStrByCustom.substring(3), splitedStrByCustom.substring(2, 3));
-		} else {
-			String splitedStrByComma = getSplit(str, ",");
-			splitedStr = getSplit(splitedStrByComma, ";");
+		if (str == null || str.isEmpty()) {
+			return 0;
 		}
 
-		char[] charArr = splitedStr.toCharArray();
+		if (str.startsWith("//")) {
+			firstSplitStr = getSplit(str, "\n");
+			finalSplitStr = getSplit(firstSplitStr.substring(3), firstSplitStr.substring(2, 3));
+			return getSum(finalSplitStr);
+		}
+
+		firstSplitStr = getSplit(str, ",");
+		finalSplitStr = getSplit(firstSplitStr, ";");
+		return getSum(finalSplitStr);
+	}
+
+	private int getSum(String splitedStr) {
 		int sum = 0;
+		char[] charArr = splitedStr.toCharArray();
 		for (char number : charArr) {
 			sum += Integer.parseInt(String.valueOf(number));
 		}
